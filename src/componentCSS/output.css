@@ -1,0 +1,46 @@
+.Output-Div {
+    border: 2px solid rgb(56, 46, 46);    
+    background-color: rgb(59, 59, 59);   
+    height: 597px;             
+    width: 425px;               
+}
+.language-selector {
+    display: flex;               /* Enables flexbox layout */
+    align-items: center;         /* Vertically centers items */
+    gap: 10px;                  /* Space between dropdown and button */
+}
+
+.language-selector select {
+    padding: 5px 10px;         /* Add padding to the select element */
+    border: 1px solid #ccc;    /* Border color */
+    border-radius: 4px;        /* Rounded corners */
+    font-size: 16px;           /* Font size */
+    background-color: #f9f9f9; /* Light background color */
+    cursor: pointer;            /* Pointer cursor on hover */
+}
+
+.language-selector select option {
+    padding: 10px;             /* Padding for option elements */
+    background-color: #ffffff; /* White background for options */
+    color: #333;               /* Text color */
+}
+
+.language-selector select option:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+}
+
+.language-selector button {
+    padding: 6px 12px;         /* Add padding to the button */
+    border: none;              /* Remove default border */
+    border-radius: 4px;       /* Rounded corners */
+    background-color: #007bff; /* Button background color */
+    color: white;              /* Button text color */
+    font-size: 16px;           /* Button font size */
+    cursor: pointer;           /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.language-selector button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+

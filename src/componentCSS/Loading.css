@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+    font-family: Arial, sans-serif;
+}
+
+.zoom-loading-container {
+    text-align: center;
+}
+
+.zoom-loader {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.zoom-circle {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #007bff;
+    border-radius: 50%;
+    animation: zoom-animation 0.8s infinite ease-in-out;
+}
+
+.zoom-circle:nth-child(1) {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    animation-delay: 0s;
+}
+
+.zoom-circle:nth-child(2) {
+    top: 50%;
+    left: 100%;
+    transform: translate(-100%, -50%);
+    animation-delay: 0.1s;
+}
+
+.zoom-circle:nth-child(3) {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    animation-delay: 0.2s;
+}
+
+.zoom-circle:nth-child(4) {
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    animation-delay: 0.3s;
+}
+
+@keyframes zoom-animation {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+}
+

@@ -1,0 +1,14 @@
+.UserContainer-div{
+    border: 2px solid black;
+    width: 1525px;
+    height: 100px;
+    background-color: gray;
+}
+.UserList-div{
+    display:  flex;
+    flex-wrap: wrap;
+    width: auto;
+    max-width: 1000px;
+    height: 100px;
+    margin-left: 20px;
+}

@@ -1,0 +1,68 @@
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.login-form {
+    background-color: white; /* White background for the form */
+    padding: 20px; /* Padding around the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 300px; /* Fixed width */
+}
+
+.login-title {
+    font-size: 24px; /* Title font size */
+    font-weight: bold; /* Bold title */
+    margin-bottom: 20px; /* Space below the title */
+    text-align: center; /* Center the title */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space below each form group */
+}
+
+label {
+    display: block; /* Make the label a block element */
+    margin-bottom: 5px; /* Space below the label */
+    font-weight: bold; /* Bold label */
+}
+
+.form-input {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside the input */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    font-size: 14px; /* Font size */
+}
+
+.form-input:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none; /* Remove default outline */
+}
+
+.login-button {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    padding: 10px; /* Padding around the button */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    width: 100%; /* Full width */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Button font size */
+}
+
+.login-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.login-text{
+    text-align: center;
+}
+.login-text Link {
+    color: #007bff;
+    text-decoration: none;
+}
