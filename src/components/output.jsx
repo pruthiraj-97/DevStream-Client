@@ -6,13 +6,26 @@ import FalseOutPut from "./falseOutPut"
 import socket from "../config/socketIoClient"
 const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
     const [currentlanguage,setCurrentLanguage]=useState('javascript')
-    const [result,setResult]=useState(null)
+    const [result,setResult]=useState('')
     const [loading,setLoading]=useState(false)
     const [userDetails,setuserDetails]=useState(JSON.parse(localStorage.getItem('DevStreamUserDetails')))
+    const [showCopyIcon,setShowCopyIcon]=useState(false)
+    const [copyContent,setCopyContent]=useState('copy')
+    const [compileResultStatus,setCompileResultStatus]=useState(false)
     const supportedLanguages=[
             "javascript",
             "python"
         ]
+     function HandleCopyUrl(e){
+        navigator.clipboard.writeText(window.location.href);
+        setCopyContent('copied')
+     }
+
+     function HandleMouseEnter(e){
+        setShowCopyIcon(true)
+        setCopyContent('copy')
+     }
+
      function HandleLanguageChange(e){
        e.preventDefault()
        setCurrentLanguage(e.target.value)
@@ -20,6 +33,7 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
      }
 
     async function HandleRunCode(e){
+        console.log(currentCodeValue)
         e.preventDefault()
         setLoading(true)
         setResult(null)
@@ -40,7 +54,12 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
         console.log("compilcation result is ",data)
         if(data.status==200){
             if(data.data){
-                setResult(data.data)
+                if(data.data.isExecutionSuccess){
+                    setCompileResultStatus(true)
+                }else{
+                    setCompileResultStatus(false)
+                }
+                setResult(data.data.output)
             }
         }
         setLoading(false)
@@ -48,11 +67,16 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
 
     useEffect(()=>{
        socket.on(`compilationResult${dashboardId}`,(message)=>{
-           console.log("result message isn ",message)
            if(userDetails && message.userDetails.id!=userDetails._id){
-               setLoading(false)
-               setResult(message.compilationResult)
+               if(message.compilationResult.isExecutionSuccess){
+                  setCompileResultStatus(true)
+                  setResult(message.compilationResult.output)
+               }else{
+                setCompileResultStatus(false)
+                setResult(message.compilationResult.output)
+               }
            }
+           setLoading(false)
        })
 
        socket.on(`compilation_start${dashboardId}`,(message)=>{
@@ -61,8 +85,9 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
               setLoading(true)
           }
        })
+
     },[])
-    
+    console.log('result is ',result)
     return (
         <div className="Output-Div">
           {
@@ -80,15 +105,20 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
                 }
             </select>
             <button onClick={HandleRunCode}>RUN</button>
+            <button className="copyurl-button"
+               onMouseEnter={HandleMouseEnter}
+               onMouseLeave={(e)=>setShowCopyIcon(false)}
+               onClick={HandleCopyUrl}
+            >copy Link</button>
+            {
+                showCopyIcon && <p className="copy-para">{copyContent}</p>
+            }
        </div>
             )
           }
        <div>
         {
-            result && result.isExecutionSuccess && <TrueOutPut data={result.output.toString()}/>
-        }
-        {
-            result && !result.isExecutionSuccess && <FalseOutPut data={result.output.toString()}/>
+            result && result.length>0 && (compileResultStatus ? <TrueOutPut data={result} /> : <FalseOutPut data={result} />) 
         }
        </div>
    

@@ -1,9 +1,8 @@
 import { ChakraProvider, Box, Text, Code } from '@chakra-ui/react';
 import React, { useState } from 'react';
-function TrueOutPut({data}){
-    const output=data.split('\n')
-    const [result,setResult]=useState(output)
-    console.log(output)
+function TrueOutPut({ data }){
+    const [result,setResult]=useState(data.split('\n'))
+    console.log("result in out put is",result)
     return (
         <ChakraProvider>
         <Box padding="20px" color="yellow.400" borderRadius="md">

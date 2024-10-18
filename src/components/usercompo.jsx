@@ -1,7 +1,7 @@
 import React from "react"
 import '../componentCSS/usercompo.css'
-function UserSection({name,email,id}){
-    console.log(name,email,id)
+function UserSection({name,id}){
+    console.log(name,id)
     return (
         <div className="userdetails-div">
          <div className="circle">{name[0].toUpperCase()}</div>
