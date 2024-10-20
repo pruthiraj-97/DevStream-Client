@@ -7,7 +7,7 @@
 .language-selector {
     display: flex;              
     align-items: center;         
-    gap: 30px;                  
+    gap: 20px;                  
 }
 
 .language-selector select {
@@ -38,7 +38,7 @@
     color: white;             
     font-size: 16px;          
     cursor: pointer;         
-    transition: background-color 0.3s;
+    margin-right: 5px;
 }
 
 .language-selector button:hover {
