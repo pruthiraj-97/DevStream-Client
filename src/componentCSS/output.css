@@ -2,42 +2,43 @@
     border: 2px solid rgb(56, 46, 46);    
     background-color: rgb(59, 59, 59);   
     height: 597px;             
-    width: 425px;               
+    width: 425px;              
 }
 .language-selector {
-    display: flex;               /* Enables flexbox layout */
-    align-items: center;         /* Vertically centers items */
-    gap: 10px;                  /* Space between dropdown and button */
+    display: flex;              
+    align-items: center;         
+    gap: 30px;                  
 }
 
 .language-selector select {
-    padding: 5px 10px;         /* Add padding to the select element */
-    border: 1px solid #ccc;    /* Border color */
-    border-radius: 4px;        /* Rounded corners */
-    font-size: 16px;           /* Font size */
-    background-color: #f9f9f9; /* Light background color */
-    cursor: pointer;            /* Pointer cursor on hover */
+    padding: 5px 10px;        
+    border: 1px solid #ccc;    
+    border-radius: 4px;       
+    font-size: 16px;          
+    background-color: #f9f9f9; 
+    cursor: pointer;
+    margin-left: 10px;            
 }
 
 .language-selector select option {
-    padding: 10px;             /* Padding for option elements */
-    background-color: #ffffff; /* White background for options */
-    color: #333;               /* Text color */
+    padding: 10px;             
+    background-color: #ffffff; 
+    color: #333;              
 }
 
 .language-selector select option:hover {
-    background-color: #f0f0f0; /* Light gray background on hover */
+    background-color: #f0f0f0;
 }
 
 .language-selector button {
-    padding: 6px 12px;         /* Add padding to the button */
-    border: none;              /* Remove default border */
-    border-radius: 4px;       /* Rounded corners */
-    background-color: #007bff; /* Button background color */
-    color: white;              /* Button text color */
-    font-size: 16px;           /* Button font size */
-    cursor: pointer;           /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Transition for hover effect */
+    padding: 6px 12px;        
+    border: none;              
+    border-radius: 4px;      
+    background-color: #007bff; 
+    color: white;             
+    font-size: 16px;          
+    cursor: pointer;         
+    transition: background-color 0.3s;
 }
 
 .language-selector button:hover {
@@ -55,8 +56,4 @@
 .copy-para{
     color: white;
     font-size: 13px;
-}
-.LeaveButton{
-    color: red;
-    background-color: rgb(255, 255, 156);
 }

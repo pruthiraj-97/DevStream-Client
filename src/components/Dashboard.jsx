@@ -37,7 +37,8 @@ const DashBoard=()=>{
        setIsLoading(false)
        console.log(data)
     }
-
+    
+    // main logic this hook running multiple times
     useEffect(() => {
       const validateUserdetails = async () => {
         try {
@@ -97,6 +98,7 @@ const DashBoard=()=>{
     function changeCurrentlanguage(language){
           setCurrentalanguage(language)
           console.log(currentLanguage)
+          setCurrentcodeValue('')
     }
     function changeCurrentCode(code){
         setCurrentcodeValue(code)

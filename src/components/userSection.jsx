@@ -105,9 +105,11 @@ const UsersCompo=({dashboardId})=>{
                   })
                }
           </div>
+          <div className="Other-section">
           <button className="leave-button"
             onClick={HandleleaveFunction}
           >Leave</button>
+          </div>
        </div>
     )
 }

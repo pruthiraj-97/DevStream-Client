@@ -33,7 +33,6 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
      }
 
     async function HandleRunCode(e){
-        console.log(currentCodeValue)
         e.preventDefault()
         setLoading(true)
         setResult(null)
@@ -67,7 +66,9 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
 
     useEffect(()=>{
        socket.on(`compilationResult${dashboardId}`,(message)=>{
+           console.log('message result ',message)
            if(userDetails && message.userDetails.id!=userDetails._id){
+               setCurrentLanguage(message.language)
                if(message.compilationResult.isExecutionSuccess){
                   setCompileResultStatus(true)
                   setResult(message.compilationResult.output)
@@ -86,14 +87,15 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
           }
        })
 
-    },[])
+    },[socket])
+
     console.log('result is ',result)
     return (
         <div className="Output-Div">
           {
             !loading && (
                 <div className="language-selector">
-               <select onChange={HandleLanguageChange}>    
+               <select onChange={HandleLanguageChange} value={currentlanguage}>    
                 {
                     supportedLanguages.map((language, index) => {
                         return (

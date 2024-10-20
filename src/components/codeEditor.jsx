@@ -16,11 +16,16 @@ const CodeEditor=({currentLanguage,changeCurrentCode,dashboardId})=>{
                 'x-access-token':localStorage.getItem('DevStreamToken')
             },
             body:JSON.stringify({
-                code:value
+                code:value,
+                language:currentLanguage
             })
         })
         const data=await response.json()
     };
+
+    useEffect(()=>{
+       setCodeValue('')
+    },[currentLanguage])
 
     useEffect(()=>{
        async function fetchDashBoardData(){
