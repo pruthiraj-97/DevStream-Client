@@ -6,13 +6,11 @@ import API from "../config/API";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 
-const UsersCompo = ({ dashboardId }) => {
+const UsersCompo = ({ dashboardId,setIsLoading }) => {
   const [users, setUsers] = useState([]);
   const [userDetails, setUserDetails] = useState(JSON.parse(localStorage.getItem('DevStreamUserDetails')));
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
 
-  // Handle user authentication options
   function HandleAuthenticate(TYPE) {
     if (TYPE === 'REGISTER') {
       navigate('/signup');
@@ -21,7 +19,6 @@ const UsersCompo = ({ dashboardId }) => {
     }
   }
 
-  // Handle the user leaving the dashboard
   async function HandleleaveFunction(e) {
     e.preventDefault();
     try {
@@ -50,7 +47,6 @@ const UsersCompo = ({ dashboardId }) => {
     }
   }
 
-  // Fetch the list of collaborators when the component mounts
   useEffect(() => {
     async function fetchCollaborators() {
       try {
@@ -76,17 +72,15 @@ const UsersCompo = ({ dashboardId }) => {
     fetchCollaborators();
   }, [dashboardId, navigate]);
 
-  // Set up socket listeners for new users and users leaving
   useEffect(() => {
     socket.on(`newuser${dashboardId}`, (message) => {
       console.log("message of new user is:", message);
       const newUser = {
         name: message.name,
         email: message.email,
-        _id: message.id // Use _id for consistency
+        _id: message.id 
       };
 
-      // Only add/update the user if they are not the current user
       if (newUser._id !== userDetails._id) {
         setUsers((prevUsers) => {
           const existingUserIndex = prevUsers.findIndex((user) => user._id === newUser._id);
@@ -104,26 +98,17 @@ const UsersCompo = ({ dashboardId }) => {
 
     socket.on(`leaveMessage${dashboardId}`, (message) => {
       console.log('leave message is:', message);
-      setUsers(message.result.collaborators); // Update the list when a user leaves
+      setUsers(message.result.collaborators); 
     });
     
-    // Clean up socket listeners on unmount
+
     return () => {
       socket.off(`newuser${dashboardId}`);
       socket.off(`leaveMessage${dashboardId}`);
     };
   }, [dashboardId, userDetails]);
 
-  // Display a loading spinner when necessary
-  if (isLoading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
-  }
 
-  // Render the user list and control options
   return (
     <div className="UserContainer-div">
       <div className="UserList-div">

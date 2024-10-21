@@ -114,7 +114,7 @@ const DashBoard=()=>{
             <Output changeCurrentlanguage={changeCurrentlanguage} currentCodeValue={currentCodeValue} dashboardId={id}/>
          </div>
          <div>
-           <UsersCompo dashboardId={id}/>
+           <UsersCompo dashboardId={id} setIsLoading={setIsLoading}/>
          </div>
        </div>
     )

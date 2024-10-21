@@ -1,5 +1,5 @@
 const API={
-   DOMAIN:'http://localhost:4005'
+   DOMAIN:'http://172.17.6.143:4005'
 }
 
 export default API
