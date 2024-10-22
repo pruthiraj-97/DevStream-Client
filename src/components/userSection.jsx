@@ -59,7 +59,7 @@ const UsersCompo = ({ dashboardId,setIsLoading }) => {
           }
         });
         const data = await response.json();
-        
+        console.log("data users ",data)
         if (data.status === 200) {
           setUsers(data.data.collaborators);
         } else if (data.status === 401) {
@@ -70,7 +70,7 @@ const UsersCompo = ({ dashboardId,setIsLoading }) => {
       }
     }
     fetchCollaborators();
-  }, [dashboardId, navigate]);
+  }, []);
 
   useEffect(() => {
     socket.on(`newuser${dashboardId}`, (message) => {
