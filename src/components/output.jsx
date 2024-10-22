@@ -122,7 +122,7 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
                onMouseEnter={HandleMouseEnter}
                onMouseLeave={(e)=>setShowCopyIcon(false)}
                onClick={HandleCopyUrl}
-            >copy Link</button>
+            >MeetingId</button>
             {
                 showCopyIcon && <p className="copy-para">{copyContent}</p>
             }
