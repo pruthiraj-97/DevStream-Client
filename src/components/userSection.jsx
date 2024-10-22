@@ -80,8 +80,6 @@ const UsersCompo = ({ dashboardId,setIsLoading }) => {
         email: message.email,
         _id: message.id 
       };
-
-      if (newUser._id !== userDetails._id) {
         setUsers((prevUsers) => {
           const existingUserIndex = prevUsers.findIndex((user) => user._id === newUser._id);
 
@@ -93,7 +91,6 @@ const UsersCompo = ({ dashboardId,setIsLoading }) => {
             return [...prevUsers, newUser];
           }
         });
-      }
     });
 
     socket.on(`leaveMessage${dashboardId}`, (message) => {
