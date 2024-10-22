@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
     const navigator=useNavigate()
     const [isLoading,setIsLoading]=useState(false)
+    const [meetingId,setMettingId]=useState('')
     async function handleCreateNewSession(e){
         try {
             e.preventDefault()
@@ -39,6 +40,11 @@ const Home = () => {
             throw Error
         }
     }
+
+    function HandleMeetingJoin(e){
+        e.preventDefault()
+        navigator(`/dashboard/${meetingId}`)
+    }
    
     if(isLoading){
         return (
@@ -57,6 +63,12 @@ const Home = () => {
             <button className="home-start-button"
                onClick={handleCreateNewSession}
             >Start a New Session</button>
+            <div className='meeting-join'>
+                <input type="text" placeholder='Enter meeting id' onChange={(e)=>setMettingId(e.target.value)}/>
+                <button 
+                   onClick={HandleMeetingJoin}
+                >Join</button>
+            </div>
         </div>
     );
 };

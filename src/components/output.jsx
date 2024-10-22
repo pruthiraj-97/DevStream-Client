@@ -17,8 +17,19 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
             "python"
         ]
      function HandleCopyUrl(e){
-        navigator.clipboard.writeText(window.location.href);
-        setCopyContent('copied')
+        e.preventDefault()
+        let url=window.location.href;
+        let splitUrl=url.split('/')
+        let meetingId=splitUrl[splitUrl.length-1]
+        navigator.clipboard.writeText(meetingId)
+        .then(() => {
+            console.log('Meeting ID copied to clipboard:', meetingId);
+            setCopyContent('copied')
+        })
+        .catch(err => {
+            console.error('Failed to copy the Meeting ID: ', err);
+            setCopyContent('error')
+        });
      }
 
      function HandleMouseEnter(e){
