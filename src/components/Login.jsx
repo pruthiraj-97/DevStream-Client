@@ -6,6 +6,7 @@ const LoginComponent = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [dashboardId,setDashboardId]=useState('')
+    const [error,setError]=useState('')
     const location=useLocation()
     const navigator=useNavigate()
     useEffect(()=>{
@@ -40,6 +41,7 @@ const LoginComponent = () => {
             }
         }else if(data.status==400){
             console.log("error is ",data)
+            setError(data.data.message)
         }
         } catch (error) {
             throw error
@@ -49,6 +51,9 @@ const LoginComponent = () => {
     return (
         <div className="login-container">
             <form className="login-form" >
+            {
+              error&&error.length>0 && <p className='Error-Message'>{error}</p>
+           }
                 <h2 className="login-title">Login</h2>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>

@@ -35,7 +35,7 @@ const Signup = () => {
             if(data.status==200){
                 Navigate('/login')
             }else if(data.status==400){
-                
+                setError(data.data.message)
             }
         } catch (error) {
             throw Error
@@ -44,6 +44,9 @@ const Signup = () => {
 
     return (
         <div className="signup-container">
+            {
+                error && error.length>0 && <p className='ErrorMessage'>{error}</p>
+            }
             <h2>Create an Account</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">

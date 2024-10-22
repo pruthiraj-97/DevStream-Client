@@ -67,3 +67,7 @@ input:focus {
     text-decoration: none;
     color: #007bff;
 }
+.ErrorMessage{
+    text-align: center;
+    color: red;
+}
