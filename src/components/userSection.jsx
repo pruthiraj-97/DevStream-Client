@@ -99,10 +99,10 @@ const UsersCompo = ({ dashboardId,setIsLoading }) => {
     });
     
 
-    return () => {
-      socket.off(`newuser${dashboardId}`);
-      socket.off(`leaveMessage${dashboardId}`);
-    };
+    // return () => {
+    //   socket.off(`newuser${dashboardId}`);
+    //   socket.off(`leaveMessage${dashboardId}`);
+    // };
   }, [dashboardId, userDetails]);
 
 
@@ -119,7 +119,7 @@ const UsersCompo = ({ dashboardId,setIsLoading }) => {
           Leave
         </button>
         
-        <div className="AUTH-SELECT">
+        {/* <div className="AUTH-SELECT">
           <select name="" id="" className="AUTH-OPTION" onChange={(e) => HandleAuthenticate(e.target.value)}>
             <option value="REGISTER" className="AUTH-OPTION">
               Register
@@ -128,7 +128,7 @@ const UsersCompo = ({ dashboardId,setIsLoading }) => {
               Login
             </option>
           </select>
-        </div>
+        </div> */}
       </div>
     </div>
   );

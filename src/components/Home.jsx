@@ -3,6 +3,7 @@ import '../componentCSS/Home.css';
 import API from '../config/API';
 import Loading from './Loading';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
 const Home = () => {
     const navigator=useNavigate()
     const [isLoading,setIsLoading]=useState(false)
@@ -53,7 +54,8 @@ const Home = () => {
     }
 
     return (
-        <div className="home-container">
+        <div>
+            <div className="home-container">
             <h1 className="home-title">Welcome to Dev Stream</h1>
             <img src="https://www.augmentedmind.de/wp-content/uploads/2020/06/collaborative-editor-feature.jpg" alt="Collaborators" className="home-collaborator-image" />
             <p className="home-description">
@@ -70,7 +72,8 @@ const Home = () => {
                 >Join</button>
             </div>
         </div>
-    );
+        </div>
+    )
 };
 
 export default Home;

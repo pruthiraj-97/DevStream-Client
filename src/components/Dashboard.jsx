@@ -97,9 +97,10 @@ const DashBoard=()=>{
 
     function changeCurrentlanguage(language){
           setCurrentalanguage(language)
-          console.log(currentLanguage)
+          console.log("language is dashboard",language)
           setCurrentcodeValue('')
     }
+    
     function changeCurrentCode(code){
         setCurrentcodeValue(code)
     }

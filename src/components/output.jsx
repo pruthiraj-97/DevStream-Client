@@ -37,10 +37,28 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
         setCopyContent('copy')
      }
 
-     function HandleLanguageChange(e){
+    async function HandleLanguageChange(e){
        e.preventDefault()
+       console.log("current language",e.target.value)
        setCurrentLanguage(e.target.value)
        changeCurrentlanguage(e.target.value)
+       await LanguageChangeMessage(e.target.value)
+     }
+
+     async function LanguageChangeMessage(newLanguage){
+        console.log("current language is ",currentlanguage)
+        const url=`${API.DOMAIN}/api/v1/dashboard/updatelanguage/${dashboardId}`
+       const response=await fetch(url,{
+          method:'PUT',
+          headers:{
+             'Content-Type':'application/json',
+                'x-access-token':localStorage.getItem('DevStreamToken')
+          },
+          body:JSON.stringify({
+            language:newLanguage
+          })
+       })
+       const data=await response.json()
      }
 
     async function HandleRunCode(e){
@@ -98,7 +116,15 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
           }
        })
 
-    },[socket])
+       socket.on(`language_change${dashboardId}`,(message)=>{
+        if(userDetails && message.id!=userDetails._id){
+            console.log("lanfuage change message ",message)
+            changeCurrentlanguage(message.language)
+            setCurrentLanguage(message.language)
+        }
+       })
+
+    },[dashboardId, userDetails])
 
     console.log('result is ',result)
     return (
