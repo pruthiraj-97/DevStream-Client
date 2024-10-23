@@ -47,6 +47,16 @@ const UsersCompo = ({ dashboardId,setIsLoading }) => {
     }
   }
 
+  function HandleAuth(TYPE){
+    return ()=>{
+      if(TYPE=='LOGIN'){
+        navigate('/login')
+      }else if(TYPE=='SIGNUP'){
+        navigate('/signup')
+      }
+    }
+  }
+
   useEffect(() => {
     async function fetchCollaborators() {
       try {
@@ -118,17 +128,8 @@ const UsersCompo = ({ dashboardId,setIsLoading }) => {
         <button className="leave-button" onClick={HandleleaveFunction}>
           Leave
         </button>
-        
-        {/* <div className="AUTH-SELECT">
-          <select name="" id="" className="AUTH-OPTION" onChange={(e) => HandleAuthenticate(e.target.value)}>
-            <option value="REGISTER" className="AUTH-OPTION">
-              Register
-            </option>
-            <option value="LOGIN" className="AUTH-OPTION">
-              Login
-            </option>
-          </select>
-        </div> */}
+        <button onClick={HandleAuth('LOGIN')} className="LOGIN-BUTTON">Login</button>
+        <button onClick={HandleAuth('SIGNUP')} className="LOGIN-BUTTON">SignUp</button>
       </div>
     </div>
   );
