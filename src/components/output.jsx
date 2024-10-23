@@ -61,6 +61,20 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
           })
        })
        const data=await response.json()
+
+       const url2=`${API.DOMAIN}/api/v1/dashboard/updatecode/${dashboardId}`
+       const response2=await fetch(url2,{
+        method:'PUT',
+        headers:{
+            'Content-Type':'application/json',
+            'x-access-token':localStorage.getItem('DevStreamToken')
+        },
+        body:JSON.stringify({
+            code:'',
+            language:newLanguage
+        })
+       })
+       const data2=await response.json()
      }
 
     async function HandleRunCode(e){
