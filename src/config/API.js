@@ -1,5 +1,5 @@
 const API={
-   DOMAIN:'http://localhost:4005'
+   DOMAIN:'https://devstream-server-1.onrender.com'
 }
 
 export default API
