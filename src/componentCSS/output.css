@@ -42,18 +42,24 @@
 }
 
 .language-selector button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3; 
 }
 .copyurl-button{
-    background-color: #007bff; /* Blue background */
-    color: white; /* White text */
-    padding: 10px; /* Padding around the button */
-    border: none; /* Remove border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 12px; /* Button font size */
+    background-color: #007bff; 
+    color: white; 
+    padding: 10px; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 12px; 
 }
 .copy-para{
     color: white;
     font-size: 13px;
+}
+.compilation-message{
+    color: white;
+    text-align: center;
+    font-size:large;
+    margin-top: 20px;
 }

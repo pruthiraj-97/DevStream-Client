@@ -12,6 +12,8 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
     const [showCopyIcon,setShowCopyIcon]=useState(false)
     const [copyContent,setCopyContent]=useState('copy')
     const [compileResultStatus,setCompileResultStatus]=useState(false)
+    const [isCodeCompiling,setIsCodeCompilling]=useState(false)
+    const [compilationMessage,setCompilationMessage]=useState()
     const supportedLanguages=[
             "javascript",
             "python"
@@ -65,6 +67,8 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
         e.preventDefault()
         setLoading(true)
         setResult(null)
+        setIsCodeCompilling(true)
+        setCompilationMessage('compilling your code please wait')
         console.log(currentCodeValue,currentlanguage)
         const url=`${API.DOMAIN}/api/v1/dashboard/compile/${dashboardId}`
         const response=await fetch(url,{
@@ -91,11 +95,12 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
             }
         }
         setLoading(false)
+        setIsCodeCompilling(false)
+        setCompilationMessage('')
     }
 
     useEffect(()=>{
        socket.on(`compilationResult${dashboardId}`,(message)=>{
-           console.log('message result ',message)
            if(userDetails && message.userDetails.id!=userDetails._id){
                setCurrentLanguage(message.language)
                if(message.compilationResult.isExecutionSuccess){
@@ -107,12 +112,16 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
                }
            }
            setLoading(false)
+           setIsCodeCompilling(false)
+           setCompilationMessage('')
        })
 
        socket.on(`compilation_start${dashboardId}`,(message)=>{
           console.log('message ',message,userDetails)
           if(userDetails && message.userDetails.id!=userDetails._id){
+              setCompilationMessage(message.message ,' please wait')
               setLoading(true)
+              setIsCodeCompilling(true)
           }
        })
 
@@ -125,10 +134,16 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
        })
 
     },[dashboardId, userDetails])
+ 
 
-    console.log('result is ',result)
+
     return (
         <div className="Output-Div">
+
+        { 
+         loading && isCodeCompiling && compilationMessage.length>0 &&
+            <p className="compilation-message">{compilationMessage}</p>
+        }
           {
             !loading && (
                 <div className="language-selector">
@@ -157,7 +172,7 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
           }
        <div>
         {
-            result && result.length>0 && (compileResultStatus ? <TrueOutPut data={result} /> : <FalseOutPut data={result} />) 
+           !isCodeCompiling && result && result.length>0 && (compileResultStatus ? <TrueOutPut data={result} /> : <FalseOutPut data={result} />) 
         }
        </div>
    
