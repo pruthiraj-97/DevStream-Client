@@ -106,6 +106,9 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
                     setCompileResultStatus(false)
                 }
                 setResult(data.data.output)
+            }else{
+                setCompileResultStatus(false)
+                setResult(data.error.message)
             }
         }
         setLoading(false)
@@ -117,6 +120,7 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
        socket.on(`compilationResult${dashboardId}`,(message)=>{
            if(userDetails && message.userDetails.id!=userDetails._id){
                setCurrentLanguage(message.language)
+            if(!message.error){
                if(message.compilationResult.isExecutionSuccess){
                   setCompileResultStatus(true)
                   setResult(message.compilationResult.output)
@@ -124,7 +128,12 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
                 setCompileResultStatus(false)
                 setResult(message.compilationResult.output)
                }
-           }
+           }else{
+            console.log("compile result",message)
+            setCompileResultStatus(false)
+            setResult(message.error)
+          }
+       }
            setLoading(false)
            setIsCodeCompilling(false)
            setCompilationMessage('')
