@@ -70,3 +70,20 @@ label {
     text-align: center;
     color: red;
 }
+.LOGIN-IMAGE{
+    width: 400px;
+    height: 300px;
+}
+.Login-Div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.DevStream-logo{
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: black;
+    font-size: ;
+}

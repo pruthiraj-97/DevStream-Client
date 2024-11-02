@@ -16,7 +16,9 @@ const Output=({changeCurrentlanguage,currentCodeValue,dashboardId})=>{
     const [compilationMessage,setCompilationMessage]=useState()
     const supportedLanguages=[
             "javascript",
-            "python"
+            "python",
+            "java",
+            "cpp"
         ]
      function HandleCopyUrl(e){
         e.preventDefault()
